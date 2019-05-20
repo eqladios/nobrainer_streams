@@ -32,7 +32,7 @@ module NoBrainer::Streams
       klass = query.model
       old_val = changes['old_val']
       new_val = changes['new_val']
-      if defined?(klass.as_hash)
+      if klass.method_defined?('as_hash')
         changes['old_val'] = klass.new(old_val).as_hash if old_val
         changes['new_val'] = klass.new(new_val).as_hash if new_val
       else
